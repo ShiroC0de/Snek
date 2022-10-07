@@ -1,0 +1,3 @@
+C:/Users/littl/CLionProjects/Snek/cmake-build-debug/CMakeFiles/Snek.dir
+C:/Users/littl/CLionProjects/Snek/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/littl/CLionProjects/Snek/cmake-build-debug/CMakeFiles/rebuild_cache.dir
