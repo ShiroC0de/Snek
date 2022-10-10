@@ -228,12 +228,20 @@ void spielfeld() {
 }
 
 int main() {
-
+    int life = 3;
     int posx = 5, posy = 5;
     char richtung = 'd';
     int ONbutton = 1;
-    int punkte = 0;
-    int zuckerl[2];
+    int score = 0;
+    int lowerx = 3, upperx = 39;
+    int lowery = 3, uppery = 18;
+
+    int fruitx[2], fruity[2];
+    fruitx[0] = 5, fruitx[1] = 5;
+    fruity[0] = 10, fruity[1] = 10;
+
+    int star[2];
+    star[0] = 1, star[1] = 1;
     setCursorType(0);
 
     nameanim();
@@ -241,7 +249,7 @@ int main() {
 
 
     gotoxy(5, 5);
-
+    //character
     do {
         gotoxy(posx, posy);
         printf("0");
@@ -288,6 +296,8 @@ int main() {
             case 'x' :
                 ONbutton = 0;
                 break;
+            default:
+                break;
 
         }
         //infinity map
@@ -303,10 +313,44 @@ int main() {
         if (posy < 2) {
             posy = 18;
         }
+        textcolor(WHITE);
+
+        // fruit 1
+        if (star[0] <= 1) {
+            fruitx[0] = (rand() % (upperx - lowerx + 1)) + lowerx;
+            fruity[0] = (rand() % (uppery - lowery + 1)) + lowery;
+            gotoxy(fruitx[0], fruity[0]);
+            printf("*");
+            star[0]++;
+        }
+        //checking position1
+        if (posx == fruitx[0] && posy == fruity[0]) {
+            score++;
+            star[0]--;
+        }
+        //fruit2
+        if (star[1] <= 1) {
+            fruitx[1] = (rand() % (upperx - lowerx + 1)) + lowerx;
+            fruity[1] = (rand() % (uppery - lowery + 1)) + lowery;
+            gotoxy(fruitx[1], fruity[1]);
+            printf("*");
+            star[1]++;
+        }
+        //checking position2
+        if (posx == fruitx[1] && posy == fruity[1]) {
+            score++;
+            star[1]--;
+        }
+
+        gotoxy(45, 3);
+        printf("Score:   %d", score);
 
         spielfeld();
 
     } while (ONbutton == 1);
-
+    system("cls");
+    credits();
+    Sleep(2000);
+    exit(0);
     return 0;
 }
